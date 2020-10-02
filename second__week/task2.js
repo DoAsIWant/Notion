@@ -50,7 +50,7 @@ console.log(firstString);
 
 let secondString = "tseb eht ma i";
 let newSecondString = "";
-for(let i = secondString.length -1; i>secondString[0]; i--){
+for(let i = secondString.length -1; i>=0; i--){
  newSecondString+=secondString[i];
 }
 
