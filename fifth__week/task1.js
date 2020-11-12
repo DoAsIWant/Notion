@@ -86,6 +86,51 @@ function objForm(){
 }
 
 
+function http(){
+    return{
+        async get(url){
+         try{
+           const responce = await fetch(url).then(responce=>
+               responce.json()
+           );
+
+           return responce;
+        
+         }catch(err){
+             return Promise.reject();
+         }
+         },
+ 
+ 
+            async post(url,data,...head){
+                 const responce = await fetch(url,{method:'POST', headers:head, body:JSON.stringify(data)},{...head}).then(res=>{
+                     res.json();
+                 })
+                 return responce;
+                    
+             }
+         } 
+        
+}
+
+const httpReq = http();
+
+httpReq.get("https://jsonplaceholder.typicode.com/posts").then(responce=>console.log(responce)).catch(err=>{
+    console.log(err);
+});
+
+httpReq.post("https://jsonplaceholder.typicode.com/posts",
+{title: 'foo',body:'bar', userId:1},
+
+{
+"Content-type": "application/json",
+}).then(responce=>{
+    console.log(responce)
+}).catch(err=>{
+    console.log(err);
+});
+
+
 
 
 
